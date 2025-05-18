@@ -22,8 +22,7 @@ function QuestionNode() {
     questionOrderNumber: 1,
     questionTypeCode: "SSELCT",
     isConditionalFlag: false,
-    parentId: null,
-    triggerAnswerId: null,
+    expectedSurveyAnswerId: null,
   };
 }
 
@@ -52,7 +51,12 @@ QuestionNode.prototype.onConnectionsChange = function (
   link_info,
   io_slot
 ) {
-  if (type === LiteGraph.OUTPUT && connected && this.outputs[slot]?.name === "Out") {
+  if (
+    type === LiteGraph.OUTPUT &&
+    connected &&
+    this.outputs[slot]?.name === "Out"
+  ) {
+    if (!this.graph) return;
     const link = link_info;
     const targetNode = this.graph.getNodeById(link.target_id);
 
@@ -61,6 +65,22 @@ QuestionNode.prototype.onConnectionsChange = function (
       targetNode.setDirtyCanvas(true, true);
     }
   }
+
+  if (
+    type === LiteGraph.INPUT &&
+    connected &&
+    this.inputs[slot]?.name === "In"
+  ) {
+    const link = link_info;
+    const parentNode = this.graph.getNodeById(link.origin_id);
+
+    if (parentNode?.type === "survey/answer") {
+      this.properties.conditionalQuestionFlag = true;
+      this.properties.expectedSurveyAnswerId = parentNode.properties.surveyAnswerId;
+      this.setDirtyCanvas(true, true);
+    }
+  }
+
 };
 
 
