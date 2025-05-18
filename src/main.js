@@ -1,5 +1,6 @@
 import { LGraph, LGraphCanvas, LiteGraph } from "litegraph.js";
 import "litegraph.js/css/litegraph.css";
+import { exp } from "./export.js";
 
 // Create the graph and editor
 const canvas = document.getElementById("graph-canvas");
@@ -16,11 +17,13 @@ function QuestionNode() {
   this.addOutput("Out", LiteGraph.EVENT);
   this.addOutput("Answers", LiteGraph.EVENT);
   this.properties = {
-    id: "Q" + Math.floor(Math.random() * 1000),
+    surveyQuestionId: Math.floor(Math.random() * 1000),
     text: "Untitled Question",
-    conditional: false,
-    parentId: "",
-    answerTrigger: "",
+    questionOrderNumber: 1,
+    questionTypeCode: "SSELCT",
+    isConditionalFlag: false,
+    parentId: null,
+    triggerAnswerId: null,
   };
 }
 
@@ -109,3 +112,13 @@ canvas.addEventListener("contextmenu", (e) => {
 
 // Start graph
 graph.start();
+
+//
+//
+//
+//
+//
+//
+//
+window.exportSurveyJSON = exp;
+window.graph = graph;
