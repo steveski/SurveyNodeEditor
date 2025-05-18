@@ -1,0 +1,111 @@
+import { LGraph, LGraphCanvas, LiteGraph } from "litegraph.js";
+import "litegraph.js/css/litegraph.css";
+
+// Create the graph and editor
+const canvas = document.getElementById("graph-canvas");
+const graph = new LGraph();
+const editor = new LGraphCanvas(canvas, graph);
+
+editor.ondblclick_node = function (node, event) {
+  editor.showNodePanel(node);
+};
+
+// Define QuestionNode
+function QuestionNode() {
+  this.addInput("In", LiteGraph.EVENT);
+  this.addOutput("Out", LiteGraph.EVENT);
+  this.addOutput("Answers", LiteGraph.EVENT);
+  this.properties = {
+    id: "Q" + Math.floor(Math.random() * 1000),
+    text: "Untitled Question",
+    conditional: false,
+    parentId: "",
+    answerTrigger: "",
+  };
+}
+
+QuestionNode.title = "Question";
+
+QuestionNode.prototype.onAdded = function () {
+  this.title = this.properties.id;
+};
+
+QuestionNode.prototype.onInspect = function (inspector) {
+  inspector.addString("Question Text", this.properties.text, (v) => {
+    this.properties.text = v;
+    this.setDirtyCanvas(true, true);
+  });
+  inspector.addString("ID", this.properties.id, (v) => {
+    this.properties.id = v;
+    this.title = v;
+    this.setDirtyCanvas(true, true);
+  });
+};
+
+// Register QuestionNode
+LiteGraph.registerNodeType("survey/question", QuestionNode);
+
+// Define AnswerNode
+function AnswerNode() {
+  this.addInput("From Question", LiteGraph.EVENT);
+  this.addOutput("To Question", LiteGraph.EVENT);
+  this.properties = {
+    text: "Answer Text",
+    surveyAnswerId: 0,
+  };
+}
+
+AnswerNode.title = "Answer";
+
+AnswerNode.prototype.onAdded = function () {
+  this.updateTitle();
+};
+
+AnswerNode.prototype.onPropertyChanged = function (name, value) {
+  if (name === "text" || name === "surveyAnswerId") {
+    this.updateTitle();
+    this.setDirtyCanvas(true, true);
+  }
+};
+
+AnswerNode.prototype.onInspect = function (inspector) {
+  inspector.addString("Answer Text", this.properties.text, (v) => {
+    this.properties.text = v;
+    this.updateTitle();
+    this.setDirtyCanvas(true, true);
+  });
+
+  inspector.addNumber("Answer ID", this.properties.surveyAnswerId, (v) => {
+    this.properties.surveyAnswerId = v;
+    this.updateTitle();
+    this.setDirtyCanvas(true, true);
+  });
+};
+
+AnswerNode.prototype.updateTitle = function () {
+  this.title = `Ans: ${this.properties.surveyAnswerId} - ${this.properties.text}`;
+};
+
+// Register AnswerNode
+LiteGraph.registerNodeType("survey/answer", AnswerNode);
+
+// Right-click to add node
+canvas.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+  const pos = editor.convertEventToCanvasOffset(e);
+
+  const menu = new LiteGraph.ContextMenu(["Add Question", "Add Answer"], {
+    event: e,
+    callback: (value) => {
+      const node =
+        value === "Add Question"
+          ? LiteGraph.createNode("survey/question")
+          : LiteGraph.createNode("survey/answer");
+      node.pos = pos;
+      graph.add(node);
+    },
+  });
+});
+
+// Start graph
+graph.start();

@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+canvas {
+  display: block;
+  background-color: #1e1e1e;
+}
