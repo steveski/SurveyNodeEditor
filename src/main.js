@@ -74,6 +74,10 @@ function AnswerNode() {
   this.properties = {
     text: "Answer Text",
     surveyAnswerId: 0,
+    surveyQuestionId: 0,
+    answerId: 0,
+    answerOrderNumber: 0,
+    IsDeletedFlag: 0
   };
 }
 
@@ -106,6 +110,25 @@ AnswerNode.prototype.onInspect = function (inspector) {
 
 AnswerNode.prototype.updateTitle = function () {
   this.title = `Ans: ${this.properties.surveyAnswerId} - ${this.properties.text}`;
+};
+
+AnswerNode.prototype.onConnectionsChange = function (
+  type,
+  slot,
+  connected,
+  link_info,
+  io_slot
+) {
+  // Only react when something is connected to the input
+  if (type === LiteGraph.INPUT && connected && this.inputs[slot]?.name === "From Question") {
+    const link = link_info;
+    const parentNode = this.graph.getNodeById(link.origin_id);
+
+    if (parentNode?.type === "survey/question") {
+      this.properties.surveyQuestionId = parentNode.properties.surveyQuestionId;
+      this.setDirtyCanvas(true, true);
+    }
+  }
 };
 
 // Register AnswerNode
