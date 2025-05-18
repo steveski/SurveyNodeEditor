@@ -184,3 +184,30 @@ graph.start();
 //
 window.exportSurveyJSON = exp;
 window.graph = graph;
+
+graph.onAfterChange = function () {
+  try {
+    const snapshot = JSON.stringify(graph.serialize());
+    localStorage.setItem("surveyGraph", snapshot);
+    console.log("Graph saved to localStorage");
+  } catch (err) {
+    console.error("Failed to save graph:", err);
+  }
+};
+
+const saved = localStorage.getItem("surveyGraph");
+if (saved) {
+  try {
+    graph.configure(JSON.parse(saved));
+    console.log("Graph loaded from localStorage");
+  } catch (err) {
+    console.error("Failed to load saved graph:", err);
+  }
+}
+
+document.getElementById("reset-graph").addEventListener("click", () => {
+  localStorage.removeItem("surveyGraph");
+  graph.clear();
+  graph.start();
+});
+

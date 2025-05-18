@@ -1,48 +1,40 @@
 export function exp(graph) {
   const visited = new Set();
-  const output = [];
+  const output = {
+    questions: []
+  };
 
   function walkQuestionNode(node) {
     if (!node || visited.has(node.id)) return;
     visited.add(node.id);
 
-    const q = { ...node.properties };
-    if (q.parentId === null) delete q.parentId;
-    if (q.triggerAnswerId === null) delete q.triggerAnswerId;
-    q.SurveyAnswers = [];
+    const question = {
+      surveyQuestionId: node.properties.surveyQuestionId,
+      questionTypeCode: node.properties.questionTypeCode,
+      questionText: node.properties.text,
+      questionOrderNumber: node.properties.questionOrderNumber,
+      IsConditionalQuestion: !!node.properties.conditionalQuestionFlag,
+      surveyAnswers: []
+    };
 
-    output.push(q);
-
-    // Find answers connected to this question's "Answers" slot
-    const answersSlotIndex = node.outputs.findIndex(
-      (o) => o.name === "Answers"
-    );
+    // Pull answers in order of answerOrderNumber
+    const answersSlotIndex = node.outputs.findIndex((o) => o.name === "Answers");
     const answerLinks = Object.values(graph.links).filter(
       (link) =>
         link.origin_id === node.id && link.origin_slot === answersSlotIndex
     );
 
-    for (const link of answerLinks) {
-      const answerNode = graph.getNodeById(link.target_id);
-      if (!answerNode || answerNode.type !== "survey/answer") continue;
+    const answers = answerLinks
+      .map((link) => graph.getNodeById(link.target_id))
+      .filter((n) => n?.type === "survey/answer")
+      .map((a) => ({ ...a.properties }))
+      .sort((a, b) => (a.answerOrderNumber || 0) - (b.answerOrderNumber || 0));
 
-      const answerData = { ...answerNode.properties };
-
-      // Follow answer's output to next question
-      const answerOut = answerNode.outputs?.[0];
-      if (answerOut?.links?.length) {
-        for (const nextLinkId of answerOut.links) {
-          const nextLink = graph.links[nextLinkId];
-          const nextQ = nextLink && graph.getNodeById(nextLink.target_id);
-          if (nextQ?.type === "survey/question") {
-            answerData.triggersQuestionId = nextQ.properties.surveyQuestionId;
-            walkQuestionNode(nextQ);
-          }
-        }
-      }
-
-      q.SurveyAnswers.push(answerData);
+    if (node.properties.questionTypeCode !== "FTEXT") {
+      question.surveyAnswers = answers;
     }
+
+    output.questions.push(question);
 
     // Follow "Out" → next question
     const outSlotIndex = node.outputs.findIndex((o) => o.name === "Out");
@@ -52,20 +44,25 @@ export function exp(graph) {
 
     for (const link of outLinks) {
       const nextQ = graph.getNodeById(link.target_id);
-      if (nextQ && nextQ.type === "survey/question" && !visited.has(nextQ.id)) {
+      if (
+        nextQ &&
+        nextQ.type === "survey/question" &&
+        !visited.has(nextQ.id) &&
+        !nextQ.properties.conditionalQuestionFlag // ❌ skip conditional questions
+      ) {
         walkQuestionNode(nextQ);
       }
     }
   }
 
-  // Start from any root (no input "In" link)
-  const roots = graph._nodes.filter(
-    (n) =>
-      n.type === "survey/question" &&
-      (!n.inputs || !n.inputs.find((i) => i.name === "In")?.link)
-  );
+  // Start from the first question in the canvas (leftmost)
+  const roots = graph._nodes
+    .filter((n) => n.type === "survey/question" && !n.properties.conditionalQuestionFlag)
+    .sort((a, b) => (a.pos?.[0] ?? 0) - (b.pos?.[0] ?? 0));
 
-  for (const root of roots) walkQuestionNode(root);
+  if (roots.length) {
+    walkQuestionNode(roots[0]);
+  }
 
   return output;
 }
