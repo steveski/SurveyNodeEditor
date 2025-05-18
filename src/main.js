@@ -45,6 +45,25 @@ QuestionNode.prototype.onInspect = function (inspector) {
   });
 };
 
+QuestionNode.prototype.onConnectionsChange = function (
+  type,
+  slot,
+  connected,
+  link_info,
+  io_slot
+) {
+  if (type === LiteGraph.OUTPUT && connected && this.outputs[slot]?.name === "Out") {
+    const link = link_info;
+    const targetNode = this.graph.getNodeById(link.target_id);
+
+    if (targetNode?.type === "survey/question") {
+      targetNode.properties.questionOrderNumber = (this.properties.questionOrderNumber || 0) + 1;
+      targetNode.setDirtyCanvas(true, true);
+    }
+  }
+};
+
+
 // Register QuestionNode
 LiteGraph.registerNodeType("survey/question", QuestionNode);
 
