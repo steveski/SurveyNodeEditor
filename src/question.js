@@ -1,6 +1,9 @@
+import { LiteGraph } from "litegraph.js";
+
 export default class QuestionNode extends LiteGraph.LGraphNode {
-  constructor() {
+  constructor(editor) {
     super();
+    this.editor = editor;
     this.addInput("In", LiteGraph.EVENT);
     this.addOutput("Out", LiteGraph.EVENT);
     this.addOutput("Answers", LiteGraph.EVENT);
@@ -47,7 +50,7 @@ export default class QuestionNode extends LiteGraph.LGraphNode {
     const text = `SQ: ${this.properties.surveyQuestionId}: ${this.properties.questionText}`;
     this.title = text;
 
-    const ctx = this.getCanvasContext?.() || editor.canvas?.getContext("2d");
+    const ctx = this.getCanvasContext?.() || this.editor.canvas?.getContext("2d");
     if (ctx) {
       ctx.font = "14px Arial";
       const textWidth = ctx.measureText(text).width;
@@ -80,6 +83,7 @@ export default class QuestionNode extends LiteGraph.LGraphNode {
       this.inputs[slot]?.name === "In"
     ) {
       const link = link_info;
+      if(!link) return;
       const parentNode = this.graph.getNodeById(link.origin_id);
       if (parentNode?.type === "survey/answer") {
         this.properties.conditionalQuestionFlag = true;
@@ -91,7 +95,7 @@ export default class QuestionNode extends LiteGraph.LGraphNode {
   }
 
   onDrawBackground(ctx, canvas) {
-    ctx.fillStyle = "#77cc77";
+    ctx.fillStyle = "#71a3f5";
     ctx.fillRect(0, 0, this.size[0], this.size[1]);
   }
 }

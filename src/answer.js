@@ -1,6 +1,9 @@
+import { LiteGraph } from "litegraph.js";
+
 export default class AnswerNode extends LiteGraph.LGraphNode {
-  constructor() {
+  constructor(editor) {
     super();
+    this.editor = editor;
     this.addInput("From Question", LiteGraph.EVENT);
     this.addOutput("To Question", LiteGraph.EVENT);
     this.properties = {
@@ -43,7 +46,7 @@ export default class AnswerNode extends LiteGraph.LGraphNode {
     const text = `Ans: ${this.properties.surveyAnswerId} - ${this.properties.answerText}`;
     this.title = text;
 
-    const ctx = this.getCanvasContext?.() || editor.canvas?.getContext("2d");
+    const ctx = this.getCanvasContext?.() || this.editor.canvas?.getContext("2d");
     if (ctx) {
       ctx.font = "14px Arial";
       const textWidth = ctx.measureText(text).width;
@@ -61,6 +64,7 @@ export default class AnswerNode extends LiteGraph.LGraphNode {
       this.inputs[slot]?.name === "From Question"
     ) {
       const link = link_info;
+      if(!link) return;
       const parentNode = this.graph.getNodeById(link.origin_id);
       if (parentNode?.type === "survey/question") {
         this.properties.surveyQuestionId =
@@ -71,7 +75,7 @@ export default class AnswerNode extends LiteGraph.LGraphNode {
   }
 
   onDrawBackground(ctx, canvas) {
-    ctx.fillStyle = "#7777cc";
+    ctx.fillStyle = "#ae82fa";
     ctx.fillRect(0, 0, this.size[0], this.size[1]);
   }
 }

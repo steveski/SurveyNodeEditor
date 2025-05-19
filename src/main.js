@@ -13,8 +13,16 @@ editor.ondblclick_node = function (node, event) {
   editor.showNodePanel(node);
 };
 
-LiteGraph.registerNodeType("survey/question", QuestionNode);
-LiteGraph.registerNodeType("survey/answer", AnswerNode);
+LiteGraph.registerNodeType("survey/question", class extends QuestionNode {
+  constructor() {
+    super(editor);
+  }
+});
+LiteGraph.registerNodeType("survey/answer", class extends AnswerNode {
+  constructor() {
+    super(editor);
+  }
+});
 
 // Right-click to add node
 canvas.addEventListener("contextmenu", (e) => {
