@@ -12,7 +12,7 @@ export default class QuestionNode extends LiteGraph.LGraphNode {
       questionText: "Untitled Question",
       questionOrderNumber: 1,
       questionTypeCode: "SSELCT",
-      isConditionalFlag: false,
+      conditionalQuestionFlag: false,
       expectedSurveyAnswerId: null,
     };
     this.updateTitle();
@@ -95,7 +95,11 @@ export default class QuestionNode extends LiteGraph.LGraphNode {
   }
 
   onDrawBackground(ctx, canvas) {
-    ctx.fillStyle = "#71a3f5";
+    if(this.properties.conditionalQuestionFlag === true) {
+      ctx.fillStyle = "#291bf2";
+    } else {
+      ctx.fillStyle = "#71a3f5";
+    }
     ctx.fillRect(0, 0, this.size[0], this.size[1]);
   }
 }
