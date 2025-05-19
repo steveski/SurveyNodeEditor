@@ -1,6 +1,10 @@
 export function exportSurveyFlow(graph) {
-  const output = { questions: [] };
+  const output = {
+    Questions: [],
+    Answers: []
+  };
   const questions = graph._nodes.filter(n => n.type === "survey/question");
+  const answers = graph._nodes.filter(n => n.type === "survey/answer");
 
   const nonConditional = questions.filter(q => !q.properties.conditionalQuestionFlag);
   const conditional = questions.filter(q => q.properties.conditionalQuestionFlag);
@@ -23,8 +27,7 @@ export function exportSurveyFlow(graph) {
         surveyAnswerId,
         surveyQuestionId,
         answerId,
-        answerOrderNumber,
-        IsDeletedFlag
+        answerOrderNumber
       } = answerNode.properties;
 
       answers.push({
@@ -60,7 +63,7 @@ export function exportSurveyFlow(graph) {
       entry.surveyAnswers = extractAnswers(q);
     }
 
-    output.questions.push(entry);
+    output.Questions.push(entry);
   }
 
   for (const q of conditional) {
@@ -101,8 +104,21 @@ export function exportSurveyFlow(graph) {
       conditionalEntry.surveyAnswers = extractAnswers(q);
     }
 
-    output.questions.push(conditionalEntry);
+    output.Questions.push(conditionalEntry);
   }
+
+  // Build Answers array
+  output.Answers = answers
+  .map(n => ({
+    SurveyQuestionId: n.properties.surveyQuestionId,
+    SurveyAnswerId: n.properties.surveyAnswerId,
+    AnswerOrderNumber: n.properties.answerOrderNumber,
+    AnswerText: n.properties.answerText,
+    AnswerId: n.properties.answerId
+  }))
+  .sort((a, b) =>
+    a.SurveyQuestionId - b.SurveyQuestionId || a.AnswerOrderNumber - b.AnswerOrderNumber
+  );
 
   return output;
 }
