@@ -1,67 +1,107 @@
-export function exp(graph) {
-  const visited = new Set();
-  const output = {
-    questions: []
-  };
+export function exportSurveyFlow(graph) {
+  const output = { questions: [] };
+  const questions = graph._nodes.filter(n => n.type === "survey/question");
 
-  function walkQuestionNode(node) {
-    if (!node || visited.has(node.id)) return;
-    visited.add(node.id);
+  const nonConditional = questions.filter(q => !q.properties.conditionalQuestionFlag);
+  const conditional = questions.filter(q => q.properties.conditionalQuestionFlag);
 
-    const question = {
-      surveyQuestionId: node.properties.surveyQuestionId,
-      questionTypeCode: node.properties.questionTypeCode,
-      questionText: node.properties.questionText,
-      questionOrderNumber: node.properties.questionOrderNumber,
-      IsConditionalQuestion: !!node.properties.conditionalQuestionFlag,
-      surveyAnswers: []
-    };
+  function extractAnswers(questionNode) {
+    const answers = [];
+    const answerOutput = questionNode.outputs?.find(o => o.name === "Answers");
+    const slotIndex = questionNode.outputs.indexOf(answerOutput);
+    if (!answerOutput || !Array.isArray(answerOutput.links)) return answers;
 
-    // Pull answers in order of answerOrderNumber
-    const answersSlotIndex = node.outputs.findIndex((o) => o.name === "Answers");
-    const answerLinks = Object.values(graph.links).filter(
-      (link) =>
-        link.origin_id === node.id && link.origin_slot === answersSlotIndex
-    );
+    for (const linkId of answerOutput.links) {
+      const link = graph.links[linkId];
+      if (!link || link.origin_slot !== slotIndex) continue;
 
-    const answers = answerLinks
-      .map((link) => graph.getNodeById(link.target_id))
-      .filter((n) => n?.type === "survey/answer")
-      .map((a) => ({ ...a.properties }))
-      .sort((a, b) => (a.answerOrderNumber || 0) - (b.answerOrderNumber || 0));
+      const answerNode = graph.getNodeById(link.target_id);
+      if (!answerNode || answerNode.type !== "survey/answer") continue;
 
-    if (node.properties.questionTypeCode !== "FTEXT") {
-      question.surveyAnswers = answers;
+      const {
+        answerText,
+        surveyAnswerId,
+        surveyQuestionId,
+        answerId,
+        answerOrderNumber,
+        IsDeletedFlag
+      } = answerNode.properties;
+
+      answers.push({
+        SurveyAnswerId: surveyAnswerId,
+        SurveyQuestionId: surveyQuestionId,
+        AnswerId: answerId,
+        AnswerOrderNumber: answerOrderNumber
+      });
     }
 
-    output.questions.push(question);
-
-    // Follow "Out" → next question
-    const outSlotIndex = node.outputs.findIndex((o) => o.name === "Out");
-    const outLinks = Object.values(graph.links).filter(
-      (link) => link.origin_id === node.id && link.origin_slot === outSlotIndex
-    );
-
-    for (const link of outLinks) {
-      const nextQ = graph.getNodeById(link.target_id);
-      if (
-        nextQ &&
-        nextQ.type === "survey/question" &&
-        !visited.has(nextQ.id) &&
-        !nextQ.properties.conditionalQuestionFlag // ❌ skip conditional questions
-      ) {
-        walkQuestionNode(nextQ);
-      }
-    }
+    return answers;
   }
 
-  // Start from the first question in the canvas (leftmost)
-  const roots = graph._nodes
-    .filter((n) => n.type === "survey/question" && !n.properties.conditionalQuestionFlag)
-    .sort((a, b) => (a.pos?.[0] ?? 0) - (b.pos?.[0] ?? 0));
+  for (const q of nonConditional) {
+    const {
+      surveyQuestionId,
+      questionTypeCode,
+      questionText,
+      questionOrderNumber,
+      conditionalQuestionFlag
+    } = q.properties;
 
-  if (roots.length) {
-    walkQuestionNode(roots[0]);
+    const entry = {
+      SurveyQuestionID: surveyQuestionId,
+      QuestionId: 999999,
+      QuestionTypeCode: questionTypeCode,
+      QuestionText: questionText,
+      QuestionOrderNumber: questionOrderNumber,
+      IsConditionalQuestion: !!conditionalQuestionFlag
+    };
+
+    if (questionTypeCode !== "FTEXT") {
+      entry.surveyAnswers = extractAnswers(q);
+    }
+
+    output.questions.push(entry);
+  }
+
+  for (const q of conditional) {
+    const {
+      surveyQuestionId,
+      questionTypeCode,
+      questionText,
+      questionOrderNumber,
+      conditionalQuestionFlag
+    } = q.properties;
+
+    const conditionalEntry = {
+      SurveyQuestionId: surveyQuestionId,
+      QuestionId: 999999,
+      QuestionTypeCode: questionTypeCode,
+      QuestionText: questionText,
+      QuestionOrderNumber: questionOrderNumber,
+      IsConditionalQuestion: !!conditionalQuestionFlag,
+      ConditionalQuestions: []
+    };
+
+    // 🧠 Fix: Properly trace back to the parent answer node
+    const parentLinkId = q.inputs?.find(i => i.name === "In")?.link;
+    const parentLink = parentLinkId != null ? graph.links[parentLinkId] : null;
+
+    if (parentLink && parentLink.origin_id != null) {
+      const parentAnswerNode = graph.getNodeById(parentLink.origin_id);
+      if (parentAnswerNode?.type === "survey/answer") {
+        conditionalEntry.ConditionalQuestions.push({
+          ParentSurveyQuestionId: parentAnswerNode.properties.surveyQuestionId,
+          ExpectedSurveyAnswerId: parentAnswerNode.properties.surveyAnswerId,
+          SurveyQuestionId: surveyQuestionId
+        });
+      }
+    }
+
+    if (questionTypeCode !== "FTEXT") {
+      conditionalEntry.surveyAnswers = extractAnswers(q);
+    }
+
+    output.questions.push(conditionalEntry);
   }
 
   return output;

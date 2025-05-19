@@ -1,6 +1,6 @@
 import { LGraph, LGraphCanvas, LiteGraph } from "litegraph.js";
 import "litegraph.js/css/litegraph.css";
-import { exp } from "./export.js";
+import { exportSurveyFlow } from "./export.js";
 import QuestionNode from "./question.js";
 import AnswerNode from "./answer.js";
 
@@ -52,7 +52,7 @@ graph.start();
 //
 //
 //
-window.exportSurveyJSON = exp;
+window.exportSurveyFlow = exportSurveyFlow;
 window.graph = graph;
 
 editor.onNodeSelected = function (node) {
