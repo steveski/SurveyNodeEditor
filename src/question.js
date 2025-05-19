@@ -92,6 +92,23 @@ export default class QuestionNode extends LiteGraph.LGraphNode {
         this.setDirtyCanvas(true, true);
       }
     }
+    
+    if (
+      type === LiteGraph.INPUT &&
+      !connected &&
+      this.inputs[slot]?.name === "In"
+    ) {
+      console.log('Snoogans');
+      this.properties.conditionalQuestionFlag = false;
+      this.setDirtyCanvas(true, true);
+      if(this.graph?.onAfterChange) {
+        this.graph.onAfterChange();
+      } else {
+        this.graph.version++;
+      }
+    }
+
+
   }
 
   onDrawBackground(ctx, canvas) {
