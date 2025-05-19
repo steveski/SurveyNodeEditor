@@ -18,7 +18,7 @@ function QuestionNode() {
   this.addOutput("Answers", LiteGraph.EVENT);
   this.properties = {
     surveyQuestionId: Math.floor(Math.random() * 1000),
-    text: "Untitled Question",
+    questionText: "Untitled Question",
     questionOrderNumber: 1,
     questionTypeCode: "SSELCT",
     isConditionalFlag: false,
@@ -29,19 +29,32 @@ function QuestionNode() {
 QuestionNode.title = "Question";
 
 QuestionNode.prototype.onAdded = function () {
-  this.title = this.properties.id;
+  this.updateTitle();
+};
+
+QuestionNode.prototype.onPropertyChanged = function (name, value) {
+  if (name === "questionText" || name === "surveyQuestionId") {
+    this.updateTitle();
+    this.setDirtyCanvas(true, true);
+  }
 };
 
 QuestionNode.prototype.onInspect = function (inspector) {
-  inspector.addString("Question Text", this.properties.text, (v) => {
-    this.properties.text = v;
+  inspector.addString("Question Text", this.properties.questionText, (v) => {
+    this.properties.questionText = v;
+    this.updateTitle();
     this.setDirtyCanvas(true, true);
   });
-  inspector.addString("ID", this.properties.id, (v) => {
-    this.properties.id = v;
-    this.title = v;
+
+  inspector.addNumber("Survey Question ID", this.properties.surveyQuestionId, (v) => {
+    this.properties.surveyQuestionId = v;
+    this.updateTitle();
     this.setDirtyCanvas(true, true);
   });
+};
+
+QuestionNode.prototype.updateTitle = function () {
+  this.title = `SQ: ${this.properties.surveyQuestionId}: ${this.properties.questionText}`;
 };
 
 QuestionNode.prototype.onConnectionsChange = function (
@@ -92,7 +105,7 @@ function AnswerNode() {
   this.addInput("From Question", LiteGraph.EVENT);
   this.addOutput("To Question", LiteGraph.EVENT);
   this.properties = {
-    text: "Answer Text",
+    answerText: "Answer Text",
     surveyAnswerId: 0,
     surveyQuestionId: 0,
     answerId: 0,
@@ -108,15 +121,15 @@ AnswerNode.prototype.onAdded = function () {
 };
 
 AnswerNode.prototype.onPropertyChanged = function (name, value) {
-  if (name === "text" || name === "surveyAnswerId") {
+  if (name === "answerText" || name === "surveyAnswerId") {
     this.updateTitle();
     this.setDirtyCanvas(true, true);
   }
 };
 
 AnswerNode.prototype.onInspect = function (inspector) {
-  inspector.addString("Answer Text", this.properties.text, (v) => {
-    this.properties.text = v;
+  inspector.addString("Answer Text", this.properties.answerText, (v) => {
+    this.properties.answerText = v;
     this.updateTitle();
     this.setDirtyCanvas(true, true);
   });
@@ -129,7 +142,7 @@ AnswerNode.prototype.onInspect = function (inspector) {
 };
 
 AnswerNode.prototype.updateTitle = function () {
-  this.title = `Ans: ${this.properties.surveyAnswerId} - ${this.properties.text}`;
+  this.title = `Ans: ${this.properties.surveyAnswerId} - ${this.properties.answerText}`;
 };
 
 AnswerNode.prototype.onConnectionsChange = function (

@@ -11,7 +11,7 @@ export function exp(graph) {
     const question = {
       surveyQuestionId: node.properties.surveyQuestionId,
       questionTypeCode: node.properties.questionTypeCode,
-      questionText: node.properties.text,
+      questionText: node.properties.questionText,
       questionOrderNumber: node.properties.questionOrderNumber,
       IsConditionalQuestion: !!node.properties.conditionalQuestionFlag,
       surveyAnswers: []
