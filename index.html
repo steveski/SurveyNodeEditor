@@ -10,15 +10,20 @@
   <body>
     <!-- <div id="app"></div>
     <script type="module" src="/src/main.js"></script> -->
-    <canvas id="graph-canvas" width="1200" height="800"></canvas>
+    <canvas id="graph-canvas" width="1920" height="1200"></canvas>
     <div id="property-panel" style="position: absolute; top: 0; right: 0; width: 300px; padding: 10px; background: #f8f8f8; border-left: 1px solid #ccc;">
       <h3>Properties</h3>
       <div id="property-content"></div>
     </div>
 
-    <input type="file" id="import-file" style="position:absolute;top:10px;left:10px;z-index:999">
-    <button id="reset-graph" style="position:absolute;top:10px;right:10px;z-index:999">Reset Graph</button>
-
+    <input type="file" id="load-file" accept=".json" style="display: none" />
+    <button id="load-graph" style="position: absolute; top: 10px; left: 10px; z-index: 1000">
+      Load Survey
+    </button>
+    <button id="reset-graph" style="position:absolute; top: 10px; right: 10px; z-index: 999">Reset Graph</button>
+    <button id="save-graph" style="position: absolute; top: 40px; left: 10px; z-index: 1000">
+      Save Survey
+    </button>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
