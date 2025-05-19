@@ -198,6 +198,38 @@ graph.start();
 window.exportSurveyJSON = exp;
 window.graph = graph;
 
+editor.onNodeSelected = function (node) {
+  showPropertyPanel(node);
+};
+
+function showPropertyPanel(node) {
+  const panel = document.getElementById("property-content");
+  panel.innerHTML = ""; // Clear previous
+
+  for (const key in node.properties) {
+    const value = node.properties[key];
+    const label = document.createElement("label");
+    label.innerText = key;
+    label.style.display = "block";
+    label.style.marginTop = "8px";
+
+    const input = document.createElement("input");
+    input.type = typeof value === "number" ? "number" : "text";
+    input.value = value;
+    input.style.width = "100%";
+    input.dataset.key = key;
+
+    input.onchange = function () {
+      const prop = this.dataset.key;
+      const newVal = input.type === "number" ? Number(this.value) : this.value;
+      node.setProperty(prop, newVal); // triggers onPropertyChanged
+    };
+
+    panel.appendChild(label);
+    panel.appendChild(input);
+  }
+}
+
 graph.onAfterChange = function () {
   try {
     const snapshot = JSON.stringify(graph.serialize());

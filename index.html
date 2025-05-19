@@ -11,22 +11,14 @@
     <!-- <div id="app"></div>
     <script type="module" src="/src/main.js"></script> -->
     <canvas id="graph-canvas" width="1200" height="800"></canvas>
-    <div
-      id="inspector"
-      style="
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: #222;
-        color: #fff;
-        padding: 10px;
-        max-width: 300px;
-      "
-    ></div>
+    <div id="property-panel" style="position: absolute; top: 0; right: 0; width: 300px; padding: 10px; background: #f8f8f8; border-left: 1px solid #ccc;">
+      <h3>Properties</h3>
+      <div id="property-content"></div>
+    </div>
 
     <input type="file" id="import-file" style="position:absolute;top:10px;left:10px;z-index:999">
     <button id="reset-graph" style="position:absolute;top:10px;right:10px;z-index:999">Reset Graph</button>
-    
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
