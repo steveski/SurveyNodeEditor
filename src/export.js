@@ -60,7 +60,7 @@ export function exportSurveyFlow(graph) {
     };
 
     if (questionTypeCode !== "FTEXT") {
-      entry.surveyAnswers = extractAnswers(q);
+      entry.SurveyAnswers = extractAnswers(q);
     }
 
     output.Questions.push(entry);
@@ -76,7 +76,7 @@ export function exportSurveyFlow(graph) {
     } = q.properties;
 
     const conditionalEntry = {
-      SurveyQuestionId: surveyQuestionId,
+      SurveyQuestionID: surveyQuestionId,
       QuestionId: 999999,
       QuestionTypeCode: questionTypeCode,
       QuestionText: questionText,
@@ -101,7 +101,7 @@ export function exportSurveyFlow(graph) {
     }
 
     if (questionTypeCode !== "FTEXT") {
-      conditionalEntry.surveyAnswers = extractAnswers(q);
+      conditionalEntry.SurveyAnswers = extractAnswers(q);
     }
 
     output.Questions.push(conditionalEntry);

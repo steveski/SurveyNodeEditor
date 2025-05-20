@@ -1,168 +1,7 @@
 {
   "last_node_id": 25,
-  "last_link_id": 28,
+  "last_link_id": 33,
   "nodes": [
-    {
-      "id": 10,
-      "type": "survey/question",
-      "pos": {
-        "0": 454,
-        "1": 544,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 268.0126953125,
-        "1": 46
-      },
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "In",
-          "type": -1,
-          "link": 10
-        }
-      ],
-      "outputs": [
-        {
-          "name": "Out",
-          "type": -1,
-          "links": null
-        },
-        {
-          "name": "Answers",
-          "type": -1,
-          "links": [
-            11,
-            12
-          ],
-          "slot_index": 1
-        }
-      ],
-      "title": "SQ: 39: Do you prefer savoury food?",
-      "properties": {
-        "surveyQuestionId": 39,
-        "questionText": "Do you prefer savoury food?",
-        "questionOrderNumber": 1,
-        "questionTypeCode": "SSELCT",
-        "conditionalQuestionFlag": true,
-        "expectedSurveyAnswerId": 0
-      }
-    },
-    {
-      "id": 17,
-      "type": "survey/question",
-      "pos": {
-        "0": 1213,
-        "1": 602,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 291.357421875,
-        "1": 46
-      },
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "In",
-          "type": -1,
-          "link": 17
-        }
-      ],
-      "outputs": [
-        {
-          "name": "Out",
-          "type": -1,
-          "links": null
-        },
-        {
-          "name": "Answers",
-          "type": -1,
-          "links": null
-        }
-      ],
-      "title": "SQ: 38: Which cake do you like instead?",
-      "properties": {
-        "surveyQuestionId": 38,
-        "questionText": "Which cake do you like instead?",
-        "questionOrderNumber": 1,
-        "questionTypeCode": "FTEXT",
-        "conditionalQuestionFlag": true,
-        "expectedSurveyAnswerId": 0
-      }
-    },
-    {
-      "id": 18,
-      "type": "survey/question",
-      "pos": {
-        "0": 1218,
-        "1": 710,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 268.0126953125,
-        "1": 46
-      },
-      "flags": {},
-      "order": 15,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "In",
-          "type": -1,
-          "link": 27
-        }
-      ],
-      "outputs": [
-        {
-          "name": "Out",
-          "type": -1,
-          "links": null
-        },
-        {
-          "name": "Answers",
-          "type": -1,
-          "links": [
-            20,
-            28
-          ],
-          "slot_index": 1
-        }
-      ],
-      "title": "SQ: 41: Do you prefer savoury food?",
-      "properties": {
-        "surveyQuestionId": 41,
-        "questionText": "Do you prefer savoury food?",
-        "questionOrderNumber": 2,
-        "questionTypeCode": "SSELCT",
-        "conditionalQuestionFlag": true,
-        "expectedSurveyAnswerId": 0
-      }
-    },
     {
       "id": 24,
       "type": "survey/answer",
@@ -205,7 +44,7 @@
       "properties": {
         "answerText": "Chips",
         "surveyAnswerId": 77,
-        "surveyQuestionId": 955,
+        "surveyQuestionId": 159,
         "answerId": 168,
         "answerOrderNumber": 1,
         "IsDeletedFlag": 0
@@ -253,55 +92,9 @@
       "properties": {
         "answerText": "Samosa",
         "surveyAnswerId": 78,
-        "surveyQuestionId": 955,
+        "surveyQuestionId": 159,
         "answerId": 169,
         "answerOrderNumber": 2,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 11,
-      "type": "survey/answer",
-      "pos": {
-        "0": 736,
-        "1": 690,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 140,
-        "1": 26
-      },
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 11
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": null
-        }
-      ],
-      "title": "Ans: 71 - Yes",
-      "properties": {
-        "answerText": "Yes",
-        "surveyAnswerId": 71,
-        "surveyQuestionId": 39,
-        "answerId": 163,
-        "answerOrderNumber": 1,
         "IsDeletedFlag": 0
       }
     },
@@ -346,56 +139,7 @@
       "properties": {
         "answerText": "No",
         "surveyAnswerId": 72,
-        "surveyQuestionId": 39,
-        "answerId": 164,
-        "answerOrderNumber": 2,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 4,
-      "type": "survey/answer",
-      "pos": {
-        "0": 271,
-        "1": 385,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 140,
-        "1": 26
-      },
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 8
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": [
-            10
-          ],
-          "slot_index": 0
-        }
-      ],
-      "title": "Ans: 67 - No",
-      "properties": {
-        "answerText": "No",
-        "surveyAnswerId": 67,
-        "surveyQuestionId": 106,
+        "surveyQuestionId": 541,
         "answerId": 164,
         "answerOrderNumber": 2,
         "IsDeletedFlag": 0
@@ -460,6 +204,592 @@
       }
     },
     {
+      "id": 23,
+      "type": "survey/answer",
+      "pos": {
+        "0": 1525,
+        "1": 955,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 28
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": null
+        }
+      ],
+      "title": "Ans: 76 - No",
+      "properties": {
+        "answerText": "No",
+        "surveyAnswerId": 76,
+        "surveyQuestionId": 71,
+        "answerId": 164,
+        "answerOrderNumber": 2,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 20,
+      "type": "survey/answer",
+      "pos": {
+        "0": 1535,
+        "1": 437,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": null
+        }
+      ],
+      "title": "Ans: 73 - Yes",
+      "properties": {
+        "answerText": "Yes",
+        "surveyAnswerId": 73,
+        "surveyQuestionId": 643,
+        "answerId": 163,
+        "answerOrderNumber": 1,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 21,
+      "type": "survey/answer",
+      "pos": {
+        "0": 1535,
+        "1": 506,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": null
+        }
+      ],
+      "title": "Ans: 74 - No",
+      "properties": {
+        "answerText": "No",
+        "surveyAnswerId": 74,
+        "surveyQuestionId": 643,
+        "answerId": 164,
+        "answerOrderNumber": 2,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 15,
+      "type": "survey/answer",
+      "pos": {
+        "0": 908,
+        "1": 433,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 140.9052734375,
+        "1": 26
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": null
+        }
+      ],
+      "title": "Ans: 69 - Vanilla",
+      "properties": {
+        "answerText": "Vanilla",
+        "surveyAnswerId": 69,
+        "surveyQuestionId": 904,
+        "answerId": 166,
+        "answerOrderNumber": 2,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 2,
+      "type": "survey/answer",
+      "pos": {
+        "0": 271,
+        "1": 287,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": [
+            29
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Ans: 66 - Yes",
+      "properties": {
+        "answerText": "Yes",
+        "surveyAnswerId": 66,
+        "surveyQuestionId": 36,
+        "answerId": 163,
+        "answerOrderNumber": 1,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 4,
+      "type": "survey/answer",
+      "pos": {
+        "0": 271,
+        "1": 385,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": [
+            30
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Ans: 67 - No",
+      "properties": {
+        "answerText": "No",
+        "surveyAnswerId": 67,
+        "surveyQuestionId": 36,
+        "answerId": 164,
+        "answerOrderNumber": 2,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 11,
+      "type": "survey/answer",
+      "pos": {
+        "0": 736,
+        "1": 690,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": null
+        }
+      ],
+      "title": "Ans: 71 - Yes",
+      "properties": {
+        "answerText": "Yes",
+        "surveyAnswerId": 71,
+        "surveyQuestionId": 541,
+        "answerId": 163,
+        "answerOrderNumber": 1,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 16,
+      "type": "survey/answer",
+      "pos": {
+        "0": 906,
+        "1": 519,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 214.3369140625,
+        "1": 26
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": [
+            31,
+            32
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Ans: 70 - None of the above",
+      "properties": {
+        "answerText": "None of the above",
+        "surveyAnswerId": 70,
+        "surveyQuestionId": 904,
+        "answerId": 167,
+        "answerOrderNumber": 3,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 14,
+      "type": "survey/answer",
+      "pos": {
+        "0": 907,
+        "1": 355,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 162.9580078125,
+        "1": 26
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": [
+            33
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Ans: 68 - Chocolate",
+      "properties": {
+        "answerText": "Chocolate",
+        "surveyAnswerId": 68,
+        "surveyQuestionId": 904,
+        "answerId": 165,
+        "answerOrderNumber": 1,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 22,
+      "type": "survey/answer",
+      "pos": {
+        "0": 1527,
+        "1": 872,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "From Question",
+          "type": -1,
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "To Question",
+          "type": -1,
+          "links": null
+        }
+      ],
+      "title": "Ans: 75 - Yes",
+      "properties": {
+        "answerText": "Yes",
+        "surveyAnswerId": 75,
+        "surveyQuestionId": 71,
+        "answerId": 163,
+        "answerOrderNumber": 1,
+        "IsDeletedFlag": 0
+      }
+    },
+    {
+      "id": 10,
+      "type": "survey/question",
+      "pos": {
+        "0": 454,
+        "1": 544,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 268.0126953125,
+        "1": 46
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "In",
+          "type": -1,
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Out",
+          "type": -1,
+          "links": null
+        },
+        {
+          "name": "Answers",
+          "type": -1,
+          "links": [
+            11,
+            12
+          ],
+          "slot_index": 1
+        }
+      ],
+      "title": "SQ: 39: Do you prefer savoury food?",
+      "properties": {
+        "surveyQuestionId": 39,
+        "questionText": "Do you prefer savoury food?",
+        "questionOrderNumber": 1,
+        "questionTypeCode": "SSELCT",
+        "conditionalQuestionFlag": true,
+        "expectedSurveyAnswerId": 67
+      }
+    },
+    {
+      "id": 13,
+      "type": "survey/question",
+      "pos": {
+        "0": 565,
+        "1": 274,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 281.240234375,
+        "1": 46
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "In",
+          "type": -1,
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Out",
+          "type": -1,
+          "links": null
+        },
+        {
+          "name": "Answers",
+          "type": -1,
+          "links": [
+            14,
+            15,
+            16
+          ],
+          "slot_index": 1
+        }
+      ],
+      "title": "SQ: 37: What kind of cake do you like?",
+      "properties": {
+        "surveyQuestionId": 37,
+        "questionText": "What kind of cake do you like?",
+        "questionOrderNumber": 1,
+        "questionTypeCode": "MSELCT",
+        "conditionalQuestionFlag": true,
+        "expectedSurveyAnswerId": 66
+      }
+    },
+    {
       "id": 9,
       "type": "survey/question",
       "pos": {
@@ -518,7 +848,7 @@
       "id": 19,
       "type": "survey/question",
       "pos": {
-        "0": 1209,
+        "0": 1210,
         "1": 351,
         "2": 0,
         "3": 0,
@@ -540,7 +870,7 @@
         {
           "name": "In",
           "type": -1,
-          "link": 24
+          "link": 33
         }
       ],
       "outputs": [
@@ -566,15 +896,15 @@
         "questionOrderNumber": 1,
         "questionTypeCode": "SSELCT",
         "conditionalQuestionFlag": true,
-        "expectedSurveyAnswerId": 0
+        "expectedSurveyAnswerId": 68
       }
     },
     {
-      "id": 13,
+      "id": 17,
       "type": "survey/question",
       "pos": {
-        "0": 564,
-        "1": 275,
+        "0": 1213,
+        "1": 602,
         "2": 0,
         "3": 0,
         "4": 0,
@@ -585,17 +915,68 @@
         "9": 0
       },
       "size": {
-        "0": 281.240234375,
+        "0": 291.357421875,
         "1": 46
       },
       "flags": {},
-      "order": 6,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
           "name": "In",
           "type": -1,
-          "link": 13
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Out",
+          "type": -1,
+          "links": null
+        },
+        {
+          "name": "Answers",
+          "type": -1,
+          "links": null
+        }
+      ],
+      "title": "SQ: 38: Which cake do you like instead?",
+      "properties": {
+        "surveyQuestionId": 38,
+        "questionText": "Which cake do you like instead?",
+        "questionOrderNumber": 1,
+        "questionTypeCode": "FTEXT",
+        "conditionalQuestionFlag": true,
+        "expectedSurveyAnswerId": 70
+      }
+    },
+    {
+      "id": 18,
+      "type": "survey/question",
+      "pos": {
+        "0": 1218,
+        "1": 710,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 268.0126953125,
+        "1": 46
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "In",
+          "type": -1,
+          "link": 32
         }
       ],
       "outputs": [
@@ -608,401 +989,20 @@
           "name": "Answers",
           "type": -1,
           "links": [
-            14,
-            15,
-            16
+            20,
+            28
           ],
           "slot_index": 1
         }
       ],
-      "title": "SQ: 37: What kind of cake do you like?",
+      "title": "SQ: 41: Do you prefer savoury food?",
       "properties": {
-        "surveyQuestionId": 37,
-        "questionText": "What kind of cake do you like?",
-        "questionOrderNumber": 1,
-        "questionTypeCode": "MSELCT",
+        "surveyQuestionId": 41,
+        "questionText": "Do you prefer savoury food?",
+        "questionOrderNumber": 2,
+        "questionTypeCode": "SSELCT",
         "conditionalQuestionFlag": true,
-        "expectedSurveyAnswerId": 0
-      }
-    },
-    {
-      "id": 14,
-      "type": "survey/answer",
-      "pos": {
-        "0": 907,
-        "1": 355,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 162.9580078125,
-        "1": 26
-      },
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 14
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": [
-            24
-          ],
-          "slot_index": 0
-        }
-      ],
-      "title": "Ans: 68 - Chocolate",
-      "properties": {
-        "answerText": "Chocolate",
-        "surveyAnswerId": 68,
-        "surveyQuestionId": 37,
-        "answerId": 165,
-        "answerOrderNumber": 1,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 15,
-      "type": "survey/answer",
-      "pos": {
-        "0": 908,
-        "1": 433,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 140.9052734375,
-        "1": 26
-      },
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 15
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": null
-        }
-      ],
-      "title": "Ans: 69 - Vanilla",
-      "properties": {
-        "answerText": "Vanilla",
-        "surveyAnswerId": 69,
-        "surveyQuestionId": 37,
-        "answerId": 166,
-        "answerOrderNumber": 2,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 16,
-      "type": "survey/answer",
-      "pos": {
-        "0": 906,
-        "1": 519,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 214.3369140625,
-        "1": 26
-      },
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 16
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": [
-            17,
-            27
-          ],
-          "slot_index": 0
-        }
-      ],
-      "title": "Ans: 70 - None of the above",
-      "properties": {
-        "answerText": "None of the above",
-        "surveyAnswerId": 70,
-        "surveyQuestionId": 37,
-        "answerId": 167,
-        "answerOrderNumber": 3,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 2,
-      "type": "survey/answer",
-      "pos": {
-        "0": 271,
-        "1": 287,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 140,
-        "1": 26
-      },
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 7
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": [
-            13
-          ],
-          "slot_index": 0
-        }
-      ],
-      "title": "Ans: 66 - Yes",
-      "properties": {
-        "answerText": "Yes",
-        "surveyAnswerId": 66,
-        "surveyQuestionId": 36,
-        "answerId": 163,
-        "answerOrderNumber": 1,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 22,
-      "type": "survey/answer",
-      "pos": {
-        "0": 1527,
-        "1": 872,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 140,
-        "1": 26
-      },
-      "flags": {
-        "collapsed": true
-      },
-      "order": 18,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 20
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": null
-        }
-      ],
-      "title": "Ans: 75 - Yes",
-      "properties": {
-        "answerText": "Yes",
-        "surveyAnswerId": 75,
-        "surveyQuestionId": 41,
-        "answerId": 163,
-        "answerOrderNumber": 1,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 23,
-      "type": "survey/answer",
-      "pos": {
-        "0": 1525,
-        "1": 955,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 140,
-        "1": 26
-      },
-      "flags": {},
-      "order": 19,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 28
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": null
-        }
-      ],
-      "title": "Ans: 76 - No",
-      "properties": {
-        "answerText": "No",
-        "surveyAnswerId": 76,
-        "surveyQuestionId": 41,
-        "answerId": 164,
-        "answerOrderNumber": 2,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 20,
-      "type": "survey/answer",
-      "pos": {
-        "0": 1535,
-        "1": 437,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 140,
-        "1": 26
-      },
-      "flags": {},
-      "order": 16,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 18
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": null
-        }
-      ],
-      "title": "Ans: 73 - Yes",
-      "properties": {
-        "answerText": "Yes",
-        "surveyAnswerId": 73,
-        "surveyQuestionId": 624,
-        "answerId": 163,
-        "answerOrderNumber": 1,
-        "IsDeletedFlag": 0
-      }
-    },
-    {
-      "id": 21,
-      "type": "survey/answer",
-      "pos": {
-        "0": 1535,
-        "1": 506,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0
-      },
-      "size": {
-        "0": 140,
-        "1": 26
-      },
-      "flags": {},
-      "order": 17,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "From Question",
-          "type": -1,
-          "link": 19
-        }
-      ],
-      "outputs": [
-        {
-          "name": "To Question",
-          "type": -1,
-          "links": null
-        }
-      ],
-      "title": "Ans: 74 - No",
-      "properties": {
-        "answerText": "No",
-        "surveyAnswerId": 74,
-        "surveyQuestionId": 40,
-        "answerId": 164,
-        "answerOrderNumber": 2,
-        "IsDeletedFlag": 0
+        "expectedSurveyAnswerId": 70
       }
     }
   ],
@@ -1032,14 +1032,6 @@
       -1
     ],
     [
-      10,
-      4,
-      0,
-      10,
-      0,
-      -1
-    ],
-    [
       11,
       10,
       1,
@@ -1052,14 +1044,6 @@
       10,
       1,
       12,
-      0,
-      -1
-    ],
-    [
-      13,
-      2,
-      0,
-      13,
       0,
       -1
     ],
@@ -1084,14 +1068,6 @@
       13,
       1,
       16,
-      0,
-      -1
-    ],
-    [
-      17,
-      16,
-      0,
-      17,
       0,
       -1
     ],
@@ -1136,15 +1112,39 @@
       -1
     ],
     [
-      24,
-      14,
-      0,
-      19,
+      28,
+      18,
+      1,
+      23,
       0,
       -1
     ],
     [
-      27,
+      29,
+      2,
+      0,
+      13,
+      0,
+      -1
+    ],
+    [
+      30,
+      4,
+      0,
+      10,
+      0,
+      -1
+    ],
+    [
+      31,
+      16,
+      0,
+      17,
+      0,
+      -1
+    ],
+    [
+      32,
       16,
       0,
       18,
@@ -1152,10 +1152,10 @@
       -1
     ],
     [
-      28,
-      18,
-      1,
-      23,
+      33,
+      14,
+      0,
+      19,
       0,
       -1
     ]
